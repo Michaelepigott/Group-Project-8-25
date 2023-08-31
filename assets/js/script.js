@@ -1,5 +1,5 @@
 //Array to import ingredients
-var owned = ['vodka', 'orange juice'];
+var owned = ['rum', 'lime'];
 //convert ingredients array into string seperated by commas
 var search = owned.join(',');
 //use ingredients to import api data as array
@@ -33,6 +33,8 @@ function getname(){
 //assings drink name to variable, "drinkname" for later use.
 drinkname = getname();
 console.log(drinkname);
+
+var drinkname = drinkname.replace(" ","_");
  // sets request url to search by drinkname
  var urlRequest = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkname;
 

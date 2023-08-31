@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+var url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
+
+fetch(url)
+ .then(function (response) {
+    return response.json();
+ })
+ .then(function (data)  {
+    console.log(data);
+=======
 
 var owned = ['lime', 'coconut'];
 
@@ -15,4 +25,15 @@ $.ajax({
    error: function ajaxError(jqXHR) {
 console.error('Error: ', jqXHR.responseText);
    }
+>>>>>>> c89ad33265c7ff11bbd49304b791db350b6437fa
+ });
+
+ var url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
+
+fetch(url)
+ .then(function (response) {
+    return response.json();
+ })
+ .then(function (data)  {
+    console.log(data);
  });

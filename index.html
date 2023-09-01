@@ -3,79 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <script src="https://cdn.tailwindcss.com"></script>
-=======
-    <link href="/dist/output.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
->>>>>>> 3a22980a1b12d6bfca608b1e27c1459c3b0d0c10
     <title>Drinkoligist</title>
-</head>
-<body>
-    <header>
-        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Drinkoligist</h1>
+
+<body class="bg-stone-200">
+    <!-- Primary Header -->
+    <header class="text-white text-center py-8 bg-gradient-to-br from-yellow-300 to-orange-500  flex flex-col justify-center items-center">
+        <h1 class="text-4xl font-semibold">Drinkoligist 🍸</h1>
     </header>
-<div>
-    <aside>
-        <section>
-            <div>
-                <h3>list of items on hand</h3>
-            </div>
-            <div>
-                <ul></ul>
-            </div>
-        </section>
 
-        <section>
-            <div>
-                <h3>history</h3>
-            </div>
-            <div>
-                <ul></ul>
-            </div>
-        </section>
-    </aside>
+    <!-- Three Columns -->
+    <div class="flex justify-center ">
+        <!-- Left Column -->
+        <div class="w-1/4 bg-white p-4 mr-4 rounded shadow-md ">
+            <h2 class="text-xl font-semibold mb-4">What do you have?</h2>
+            <input type="text" class="w-full px-2 py-1 mb-2 border rounded " placeholder="Input 1">
+            <input type="text" class="w-full px-2 py-1 mb-2 border rounded" placeholder="Input 2">
+            <input type="text" class="w-full px-2 py-1 mb-2 border rounded" placeholder="Input 3">
+            <input type="text" class="w-full px-2 py-1 mb-2 border rounded" placeholder="Input 4">
 
-    <main>
-        <section>
-            <div>
-                <h2>Let's Make You A Drink.</h2>
+            <div class="">
+                <h3 class="text-l font-semibold mb-4">History</h3>
+                <div>
+                    <ul></ul>
+                </div>
             </div>
-            <div>
-                <p></p>
-            </div>
-            <div>
-                <button></button>
-            </div>
-        </section>
+        </div>
 
-        <section class="hide">
-            <form action="">
-                <label for=""></label>
-                <input type="text">
+        
+        
+        <!-- Center Column -->
+        <div class="w-1/2 bg-white p-4 mx-4 rounded shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Lets see whats new!</h2>
+            <!-- Content of center column goes here -->
+        </div>
+        
+        <!-- Right Column -->
+        <div class="w-1/4 bg-white p-4 ml-4 rounded shadow-md">
+            <h2 class="text-xl font-semibold mb-4">You need these!</h2>
+            <!-- Content of right column goes here -->
+        </div>
+    </div>
 
-                <label for=""></label>
-                <input type="text">
-
-                <label for=""></label>
-                <input type="text">
-
-                <button></button>
-            </form>
-        </section>
-    </main>
-
-    <aside>
-        <section>
-            <div>
-                <h3>Cart</h3>
-            </div>
-            <div>
-                <ul></ul>
-            </div>
-        </section>
-    </aside>
-</div>
-<script src="./assets/js/script.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

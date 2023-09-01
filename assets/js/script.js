@@ -36,12 +36,35 @@ console.log(drinkname);
 
 var drinkname = drinkname.replace(" ","_");
  // sets request url to search by drinkname
- var urlRequest = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + drinkname;
+ var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
-fetch(urlRequest)
+fetch(urlRequest + drinkname)
  .then(function (response) {
     return response.json();
  })
  .then(function (data)  {
     console.log(data);
+    console.log(data.drinks[0]);
+    var myDrink = data.drinks[0];
+    console.log(myDrink.strDrink);
+    console.log(myDrink.strDrinkThumb);
+    console.log(myDrink.strInstructions);
+    var count = 1;
+    var ingredients = [];
+    for(var i in myDrink) {
+      var ingredient = "";
+      var measure = "";
+      if(i.startsWith("strIngredient")&&  myDrink[i]) {
+         ingredient = myDrink[i];
+         if(myDrink['strMeasure' + count]){
+            measure = myDrink['strMeasure' + count];
+         } else{
+            measure = "";
+         }
+         count += 1;
+         ingredients.push('${measure} ${ingredients}');
+         }
+      }
+      console.log(ingredients);
  });
+ 

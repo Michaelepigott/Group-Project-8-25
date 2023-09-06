@@ -43,28 +43,25 @@ fetch(urlRequest + drinkname)
     return response.json();
  })
  .then(function (data)  {
+   if(!data.drinks) {
+   return
+   }
     console.log(data);
     console.log(data.drinks[0]);
     var myDrink = data.drinks[0];
     console.log(myDrink.strDrink);
     console.log(myDrink.strDrinkThumb);
     console.log(myDrink.strInstructions);
-    var count = 1;
+    var count = 16;
     var ingredients = [];
-    for(var i in myDrink) {
-      var ingredient = "";
-      var measure = "";
-      if(i.startsWith("strIngredient")&&  myDrink[i]) {
-         ingredient = myDrink[i];
-         if(myDrink['strMeasure' + count]){
-            measure = myDrink['strMeasure' + count];
-         } else{
-            measure = "";
-         }
-         count += 1;
-         ingredients.push('${measure} ${ingredients}');
-         }
+    console.log(myDrink)
+   for (var i=1; i<count; i++) {
+      var measure = myDrink['strMeasure' + i];
+      var ingredient = myDrink['strIngredient' + i];
+      if(measure || ingredient) {
+         ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
       }
+   }
       console.log(ingredients);
  });
  

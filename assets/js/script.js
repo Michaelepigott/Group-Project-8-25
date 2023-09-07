@@ -4,6 +4,10 @@ input2el = document.getElementById("input-2");
 input3el = document.getElementById("input-3");
 input4el = document.getElementById("input-4");
 inputbtnel = document.getElementById("input-btn");
+var cocktailName = document.getElementById("drink-name");
+var cocktailImage = document.getElementById("image");
+var cocktailInstructions = document.getElementById("drink-instructions");
+var cocktailIngredients = document.getElementById("drink-mi");
 //Array to import ingredients
 var owned = [];
 //gets inputs
@@ -46,30 +50,14 @@ function getnamedata(){
 }
 
 //randomizes output from array
-// function getname(){
-//    randomnum = Math.floor(Math.random()*(10));
-//    console.log(randomnum);
-//    drinknameinfunction = namearray[randomnum].name;  
-//    return drinknameinfunction;
-// };
+ function getname(){
+   randomnum = Math.floor(Math.random()*(10));
+   console.log(randomnum);
+   drinknameinfunction = namearray[randomnum].name;  
+   return drinknameinfunction;
+ };
 
 
-
-
-// function api2(){
-   //assings drink name to variable, "drinkname" for later use.
-   // sets request url to search by drinkname in cocktail database
- var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-   // variables to tie into the html
- var cocktailName = document.getElementById("drink-name");
- var cocktailImage = document.getElementById("image");
- var cocktailInstructions = document.getElementById("drink-instructions");
- var cocktailIngredients = document.getElementById("drink-mi");
- //  drinkname = getname();
- //  var drinkname = drinkname.replace(" ","_");
- //  console.log(drinkname);
-   // fetches drinkname from api1 and combines with api2
-   fetch(urlRequest) //+ drinkname)
 function getname(){
    //randomnum = Math.floor(Math.random()*(10));
    //console.log(randomnum);
@@ -134,12 +122,16 @@ function getname(){
          cocktailIngredients.innerHTML = ingredients;
          console.log(ingredients);
    });
- //  };
+
+  };
+
  //calls alll functions on button press
-//  inputbtnel.addEventListener('click', function(event){
-//    event.preventDefault();
-//    //call function (assign to user interface later)
-//    getnamedata();
+ inputbtnel.addEventListener('click', function(event){
+   event.preventDefault();
+   //call function (assign to user interface later)
+   getnamedata();
    
-//    api2();
-//    });
+   api2();
+   })
+
+ //  };

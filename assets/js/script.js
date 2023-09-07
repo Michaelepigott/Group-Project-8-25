@@ -71,23 +71,23 @@ function getnamedata(){
    // fetches drinkname from api1 and combines with api2
    fetch(urlRequest) //+ drinkname)
 function getname(){
-   randomnum = Math.floor(Math.random()*(10));
-   console.log(randomnum);
-   drinknameinfunction = namearray[randomnum].name;  
-   return drinknameinfunction;
+   //randomnum = Math.floor(Math.random()*(10));
+   //console.log(randomnum);
+   //drinknameinfunction = namearray[randomnum].name;  
+   //return drinknameinfunction;
 };
 
 
 
 
-function api2(){
-   //assings drink name to variable, "drinkname" for later use.
+// function api2(){
+   //assings drink name to variable, "drinknamex" for later use.
     // sets request url to search by drinkname
  var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
    drinkname = getname();
-   var drinkname = drinkname.replace(" ","_");
+   //var drinkname = drinkname.replace(" ","_");
    console.log(drinkname);
-   fetch(urlRequest + drinkname)
+   fetch(urlRequest) // + drinkname)
    .then(function (response) {
       return response.json();
    })
@@ -143,14 +143,3 @@ function api2(){
    
 //    api2();
 //    });
-         console.log(ingredients);
-   });
-   };
- //calls alll functions on button press
- inputbtnel.addEventListener('click', function(event){
-   event.preventDefault();
-   //call function (assign to user interface later)
-   getnamedata();
-   
-   api2();
-   });

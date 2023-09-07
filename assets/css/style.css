@@ -1,3 +1,10 @@
 .font-cursive {
     font-family: Brush Script MT, Brush Script Std, cursive;
 }
+
+#drink-name {
+    font-size: 42px;
+    font-weight: 650;
+    color: olive;
+    padding: 20px 0;
+}

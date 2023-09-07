@@ -59,27 +59,27 @@ function getnamedata(){
 
 
 function getname(){
-   //randomnum = Math.floor(Math.random()*(10));
-   //console.log(randomnum);
-   //drinknameinfunction = namearray[randomnum].name;  
-   //return drinknameinfunction;
+   randomnum = Math.floor(Math.random()*(10));
+   console.log(randomnum);
+   drinknameinfunction = namearray[randomnum].name;  
+   return drinknameinfunction;
 };
 
 
 
 
-// function api2(){
+ function api2(){
    //assings drink name to variable, "drinknamex" for later use.
     // sets request url to search by drinkname
  var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
    drinkname = getname();
-   //var drinkname = drinkname.replace(" ","_");
+   var drinkname = drinkname.replace(" ","_");
    console.log(drinkname);
-   fetch(urlRequest) // + drinkname)
-   .then(function (response) {
-      return response.json();
-   })
-   .then(function (data)  {
+   fetch (urlRequest + drinkname)
+      .then(function (response) {
+         return response.json();
+      })
+      .then(function (data)  {
       if(!data.drinks) {
       return
       }
@@ -121,9 +121,10 @@ function getname(){
       }
          cocktailIngredients.innerHTML = ingredients;
          console.log(ingredients);
-   });
+   })
+   };
 
-  };
+
 
  //calls alll functions on button press
  inputbtnel.addEventListener('click', function(event){
@@ -133,5 +134,4 @@ function getname(){
    
    api2();
    })
-
- //  };
+ 

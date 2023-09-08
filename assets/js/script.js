@@ -57,17 +57,6 @@ function getnamedata(){
    return drinknameinfunction;
  };
 
-
-function getname(){
-   randomnum = Math.floor(Math.random()*(10));
-   console.log(randomnum);
-   drinknameinfunction = namearray[randomnum].name;  
-   return drinknameinfunction;
-};
-
-
-
-
  function api2(){
    //assings drink name to variable, "drinknamex" for later use.
     // sets request url to search by drinkname
@@ -149,6 +138,8 @@ function getname(){
    })
    };
 
+
+   
 
 
  //calls alll functions on button press

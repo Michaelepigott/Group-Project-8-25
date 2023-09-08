@@ -40,6 +40,9 @@ function getnamedata(){
    success: function(result) {
          //saves data to variable
          namearray = result;
+         // run get name function with the resulted array
+         getname(namearray)
+         // return name array to be used globaly
          return namearray;
       },
       error: function ajaxError(jqXHR) {
@@ -50,19 +53,19 @@ function getnamedata(){
 }
 
 //randomizes output from array
- function getname(){
+ function getname(namearray){
    randomnum = Math.floor(Math.random()*(10));
    console.log(randomnum);
    drinknameinfunction = namearray[randomnum].name;  
-   return drinknameinfunction;
+   // run api2 function with drinknameinfunction variable;
+   api2(drinknameinfunction)
  };
 
- function api2(){
-   //assings drink name to variable, "drinknamex" for later use.
+ function api2(drinknameinfunction){
     // sets request url to search by drinkname
  var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-   drinkname = getname();
-   var drinkname = drinkname.replace(" ","_");
+   
+   var drinkname = drinknameinfunction.replace(" ","_");
    console.log(drinkname);
    fetch (urlRequest + drinkname)
       .then(function (response) {
@@ -70,8 +73,12 @@ function getnamedata(){
       })
       .then(function (data)  {
       if(!data.drinks) {
+         // if result from getname doesn't match a data in api2 run function again to search for another match
+         getname(namearray)
+         // localStorage.setItem('suggestedDrink', JSON.stringify(data));
       return;
       }
+      localStorage.setItem('suggestedDrink', JSON.stringify(data.drinks[0]));
    // return data.drinks
       console.log(data);
       console.log(data.drinks[0]);
@@ -148,6 +155,5 @@ function getnamedata(){
    //call function (assign to user interface later)
    getnamedata();
    
-   api2();
    })
  

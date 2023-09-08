@@ -7,4 +7,15 @@
     font-weight: 650;
     color: olive;
     padding: 20px 0;
+    text-align: center;
+}
+
+#drink-mi {
+padding-bottom: 10px;
+display: flex;
+}
+
+#drink-instructions {
+display: flex;
+justify-content: center;
 }

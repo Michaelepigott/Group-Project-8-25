@@ -81,7 +81,7 @@ function getname(){
       })
       .then(function (data)  {
       if(!data.drinks) {
-      return
+      return;
       }
    // return data.drinks
       console.log(data);
@@ -112,15 +112,40 @@ function getname(){
       var count = 16;
       var ingredients = [];
       console.log(myDrink)
-      for (var i=1; i<count; i++) {
+      /* for (var i=1; i<count; i++) {
          var measure = myDrink['strMeasure' + i];
          var ingredient = myDrink['strIngredient' + i];
          if(measure || ingredient) {
             ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
          }
-      }
+      } 
+      
+
          cocktailIngredients.innerHTML = ingredients;
-         console.log(ingredients);
+         console.log(ingredients); */
+         
+         var ingredientsList = document.getElementById("drink-mi");
+         for (var i = 1; i <= count; i++) {
+            var measure = myDrink['strMeasure' + i];
+            var ingredient = myDrink['strIngredient' + i];
+    
+            if (measure || ingredient) {
+                ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
+            }
+        }
+    
+        // Create an <ul> element to hold the list of ingredients
+        var ul = document.createElement("ul");
+    
+        // Populate the <ul> with <li> elements for each ingredient
+        ingredients.forEach(function (ingredient) {
+            var listItem = document.createElement("li");
+            listItem.textContent = ingredient;
+            ul.appendChild(listItem);
+        });
+    
+        // Append the <ul> to the ingredientsList element
+        ingredientsList.appendChild(ul);
    })
    };
 

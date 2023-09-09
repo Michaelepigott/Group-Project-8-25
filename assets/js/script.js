@@ -7,8 +7,8 @@ inputbtnel = document.getElementById("input-btn");
 var cocktailName = document.getElementById("drink-name");
 var cocktailImage = document.getElementById("image");
 var cocktailInstructions = document.getElementById("drink-instructions");
-var cocktailIngredients = document.getElementById("drink-mi");
 var historyEl = document.getElementById('hist-1');
+var ingredientsList = document.getElementById("drink-mi");
 var searchHistory = [];
 //Array to import ingredients
 var owned = [];
@@ -61,6 +61,7 @@ if (storageHistory) {
 renderSearchHistory();
 }
 
+
 //use ingredients to import api data as array
 function getnamedata(){
    search = getinput();
@@ -95,6 +96,8 @@ function getnamedata(){
  };
 
  function api2(drinknameinfunction){
+   
+
     // sets request url to search by drinkname
  var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
    
@@ -111,7 +114,8 @@ function getnamedata(){
          // localStorage.setItem('suggestedDrink', JSON.stringify(data));
       return;
       }
-      
+      ingredientsList.innerHTML = '';
+      ingredientsList.innerHTML = '';
    // return data.drinks
       console.log(data);
       console.log(data.drinks[0]);
@@ -141,6 +145,7 @@ function getnamedata(){
       console.log(myDrink.strInstructions);
       var count = 16;
       var ingredients = [];
+ 
       console.log(myDrink)
       /* for (var i=1; i<count; i++) {
          var measure = myDrink['strMeasure' + i];
@@ -153,8 +158,6 @@ function getnamedata(){
 
          cocktailIngredients.innerHTML = ingredients;
          console.log(ingredients); */
-         
-         var ingredientsList = document.getElementById("drink-mi");
          for (var i = 1; i <= count; i++) {
             var measure = myDrink['strMeasure' + i];
             var ingredient = myDrink['strIngredient' + i];
@@ -164,6 +167,7 @@ function getnamedata(){
             }
             
         }
+      
     
         // Create an <ul> element to hold the list of ingredients
         var ul = document.createElement("ul");
@@ -197,6 +201,8 @@ function searchHistoryClick (e) {
  //calls alll functions on button press
  inputbtnel.addEventListener('click', function(event){
    event.preventDefault();
+   
+      
    //call function (assign to user interface later)
    getnamedata();
    

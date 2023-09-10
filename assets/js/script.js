@@ -38,6 +38,7 @@ function renderSearchHistory() {
       // Btn needs to be styled with setting attributes
       Btn.classList.add('history-btn', 'btn-history');
       Btn.setAttribute('data-search', searchHistory[i]);
+      Btn.setAttribute('id', 'history' + searchHistory.length);
       Btn.textContent = searchHistory[i].strDrink;
       historyEl.append(Btn);
    }
@@ -114,6 +115,7 @@ function getnamedata(){
          // localStorage.setItem('suggestedDrink', JSON.stringify(data));
       return;
       }
+      // Clears Last Array
       ingredientsList.innerHTML = '';
       ingredientsList.innerHTML = '';
    // return data.drinks
@@ -147,17 +149,7 @@ function getnamedata(){
       var ingredients = [];
  
       console.log(myDrink)
-      /* for (var i=1; i<count; i++) {
-         var measure = myDrink['strMeasure' + i];
-         var ingredient = myDrink['strIngredient' + i];
-         if(measure || ingredient) {
-            ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
-         }
-      } 
       
-
-         cocktailIngredients.innerHTML = ingredients;
-         console.log(ingredients); */
          for (var i = 1; i <= count; i++) {
             var measure = myDrink['strMeasure' + i];
             var ingredient = myDrink['strIngredient' + i];
@@ -191,10 +183,9 @@ function searchHistoryClick (e) {
    if (!e.target.matches('.btn-history')) {
        return;
    }
-   var Btn = e.target;
-   // this search variable is an object for the drink
-   var search = Btn.getAttribute('data-search');
-   // object need to be displayed when button is clicked
+   var drinknameinfunction = e.target.textContent;
+   api2(drinknameinfunction);
+   
 }
 
 

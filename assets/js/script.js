@@ -7,8 +7,8 @@ inputbtnel = document.getElementById("input-btn");
 var cocktailName = document.getElementById("drink-name");
 var cocktailImage = document.getElementById("image");
 var cocktailInstructions = document.getElementById("drink-instructions");
-var cocktailIngredients = document.getElementById("drink-mi");
 var historyEl = document.getElementById('hist-1');
+var ingredientsList = document.getElementById("drink-mi");
 var searchHistory = [];
 //Array to import ingredients
 var owned = [];
@@ -38,6 +38,7 @@ function renderSearchHistory() {
       // Btn needs to be styled with setting attributes
       Btn.classList.add('history-btn', 'btn-history');
       Btn.setAttribute('data-search', searchHistory[i]);
+      Btn.setAttribute('id', 'history' + searchHistory.length);
       Btn.textContent = searchHistory[i].strDrink;
       historyEl.append(Btn);
    }
@@ -60,6 +61,7 @@ if (storageHistory) {
 }
 renderSearchHistory();
 }
+
 
 //use ingredients to import api data as array
 function getnamedata(){
@@ -95,6 +97,8 @@ function getnamedata(){
  };
 
  function api2(drinknameinfunction){
+   
+
     // sets request url to search by drinkname
  var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
    
@@ -111,7 +115,9 @@ function getnamedata(){
          // localStorage.setItem('suggestedDrink', JSON.stringify(data));
       return;
       }
-      
+      // Clears Last Array
+      ingredientsList.innerHTML = '';
+      ingredientsList.innerHTML = '';
    // return data.drinks
       console.log(data);
       console.log(data.drinks[0]);
@@ -141,20 +147,9 @@ function getnamedata(){
       console.log(myDrink.strInstructions);
       var count = 16;
       var ingredients = [];
+ 
       console.log(myDrink)
-      /* for (var i=1; i<count; i++) {
-         var measure = myDrink['strMeasure' + i];
-         var ingredient = myDrink['strIngredient' + i];
-         if(measure || ingredient) {
-            ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
-         }
-      } 
       
-
-         cocktailIngredients.innerHTML = ingredients;
-         console.log(ingredients); */
-         
-         var ingredientsList = document.getElementById("drink-mi");
          for (var i = 1; i <= count; i++) {
             var measure = myDrink['strMeasure' + i];
             var ingredient = myDrink['strIngredient' + i];
@@ -164,6 +159,7 @@ function getnamedata(){
             }
             
         }
+      
     
         // Create an <ul> element to hold the list of ingredients
         var ul = document.createElement("ul");
@@ -187,16 +183,17 @@ function searchHistoryClick (e) {
    if (!e.target.matches('.btn-history')) {
        return;
    }
-   var Btn = e.target;
-   // this search variable is an object for the drink
-   var search = Btn.getAttribute('data-search');
-   // object need to be displayed when button is clicked
+   var drinknameinfunction = e.target.textContent;
+   api2(drinknameinfunction);
+   
 }
 
 
  //calls alll functions on button press
  inputbtnel.addEventListener('click', function(event){
    event.preventDefault();
+   
+      
    //call function (assign to user interface later)
    getnamedata();
    

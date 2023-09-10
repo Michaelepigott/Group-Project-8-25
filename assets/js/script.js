@@ -89,11 +89,18 @@ function getnamedata(){
 
 //randomizes output from array
  function getname(namearray){
-   randomnum = Math.floor(Math.random()*(10));
-   console.log(randomnum);
-   drinknameinfunction = namearray[randomnum].name;  
-   // run api2 function with drinknameinfunction variable;
-   api2(drinknameinfunction)
+   //If APi 1 comes up with nothing, error message, else run function
+   if (namearray.length = '0') {
+      cocktailName.innerHTML = 'Whoops, Try Again';
+      cocktailImage.innerHTML = `
+      <img src= ./assets/glass-martini-spilled-liquid-pink-green-background-modern-art-photography-135682922.webp>
+      `;
+   } else {
+      randomnum = Math.floor(Math.random()*(10));
+      console.log(randomnum);
+      drinknameinfunction = namearray[randomnum].name;  
+      // run api2 function with drinknameinfunction variable;
+      api2(drinknameinfunction) };
  };
 
  function api2(drinknameinfunction){
@@ -192,8 +199,6 @@ function searchHistoryClick (e) {
  //calls alll functions on button press
  inputbtnel.addEventListener('click', function(event){
    event.preventDefault();
-   
-      
    //call function (assign to user interface later)
    getnamedata();
    

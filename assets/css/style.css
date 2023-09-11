@@ -3,8 +3,19 @@
 }
 
 #drinkoligist-title:hover {
-    transition: opacity 0.6s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     cursor: pointer;
+}
+
+.main {
+    background-image: url('/assets/bar-background.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center; 
+    height: 100%;
+    margin: 0;
+    overflow-x: hidden; 
 }
 
 #hist-1 {
@@ -36,6 +47,28 @@
     font-weight: 500;
 }
 
+.history-btn {
+    display: block;
+    width: 100%; 
+    padding: 5px 5px; 
+    margin: 5px 0;
+    /* border: 1px solid #ddd; */
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.history-btn:hover {
+    background-color: #7e7c7c;
+}
+
+.btn-history {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+}
 
 @media (min-width: 1024px) {
     .lg\:flex {

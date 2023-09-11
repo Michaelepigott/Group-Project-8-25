@@ -42,7 +42,9 @@ function renderSearchHistory() {
       Btn.textContent = searchHistory[i].strDrink;
       historyEl.append(Btn);
    }
-}
+} 
+
+
 // function to store the resulted drink object in an array
 function setStorage(drink) {
    if (searchHistory.indexOf(drink) !== -1) {
@@ -55,12 +57,44 @@ function setStorage(drink) {
 
 // function to get search history from local storage
 function getStorage() {
-var storageHistory = localStorage.getItem('suggestedDrink');
+var storageHistory = localStorage.getItem('search-history');
 if (storageHistory) {
    searchHistory = JSON.parse(storageHistory);
 }
 renderSearchHistory();
 }
+
+// Function to clear local storage data and refresh the page
+function clearLocalStorageAndRefresh() {
+   localStorage.removeItem('search-history'); 
+
+   location.reload();
+}
+
+// Add a click event listener to the "Clear History" button
+var clearStorageButton = document.getElementById('clear-storage-btn');
+clearStorageButton.addEventListener('click', function() {
+       clearLocalStorageAndRefresh();
+   }
+);
+
+// Get the h1 element by its ID
+var titleElement = document.getElementById("drinkoligist-title");
+
+// Function to dim the h1 on hover
+titleElement.addEventListener("mouseenter", function() {
+    titleElement.style.opacity = "0.7";
+});
+
+// Function to restore the h1 opacity when mouse leaves
+titleElement.addEventListener("mouseleave", function() {
+    titleElement.style.opacity = "1";
+});
+
+// Function to refresh the page when the h1 is clicked
+titleElement.addEventListener("click", function() {
+    location.reload();
+});
 
 
 //use ingredients to import api data as array
@@ -90,7 +124,7 @@ function getnamedata(){
 //randomizes output from array
  function getname(namearray){
    //If APi 1 comes up with nothing, error message, else run function
-   if (namearray.length = '0') {
+   if (namearray.length === 0) {
       cocktailName.innerHTML = 'Whoops, Try Again';
       cocktailImage.innerHTML = `
       <img src= ./assets/glass-martini-spilled-liquid-pink-green-background-modern-art-photography-135682922.webp>
@@ -196,11 +230,11 @@ function searchHistoryClick (e) {
 }
 
 
- //calls alll functions on button press
+ //calls all functions on button press
  inputbtnel.addEventListener('click', function(event){
    event.preventDefault();
    //call function (assign to user interface later)
    getnamedata();
    
    })
-   historyEl.addEventListener('click', searchHistoryClick);
+  historyEl.addEventListener('click', searchHistoryClick);

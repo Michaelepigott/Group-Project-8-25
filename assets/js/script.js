@@ -100,7 +100,7 @@ function getnamedata(){
             console.log('error')
             cocktailName.innerHTML = 'Whoops, Try Again';
             cocktailImage.innerHTML = `
-            <img src= ./assets/glass-martini-spilled-liquid-pink-green-background-modern-art-photography-135682922.webp>
+            <img src= ./assets/images/error-image.webp>
             `;
             cocktailIngredients.innerHTML = '';
             cocktailInstructions.innerHTML = '';
@@ -126,7 +126,7 @@ function getname(namearray){
       console.log('error');
       cocktailName.innerHTML = 'Whoops, Try Again';
       cocktailImage.innerHTML = `
-      <img src= ./assets/glass-martini-spilled-liquid-pink-green-background-modern-art-photography-135682922.webp>
+      <img src= ./assets/images/error-image.webp>
       `;
       cocktailIngredients.innerHTML = '';
       cocktailInstructions.innerHTML = '';

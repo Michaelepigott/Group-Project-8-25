@@ -2,20 +2,70 @@
     font-family: Brush Script MT, Brush Script Std, cursive;
 }
 
+#drinkoligist-title:hover {
+    transition: opacity 0.6s ease-in-out;
+}
+
+
+#hist-1{
+    color: white;
+    font-weight: 400;
+}
+
 #drink-name {
     font-size: 42px;
     font-weight: 650;
-    color: olive;
+    color: white;
     padding: 20px 0;
     text-align: center;
 }
 
+
 #drink-mi {
-padding-bottom: 10px;
-display: flex;
+    padding-bottom: 10px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-weight: 500;
 }
 
 #drink-instructions {
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+}
+
+#image{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+@media (min-width: 1024px) {
+    .lg\:flex {
+        display: flex;
+    }
+
+    .lg\:justify-center {
+        justify-content: center;
+    }
+
+    .lg\:w-1\/4 {
+        width: 25%;
+    }
+
+    .lg\:w-3\/4 {
+        width: 75%;
+    }
+}
+
+@media (max-width: 640px) {
+    .lg\:flex {
+        display: block; /* Switch to rows layout */
+    }
 }

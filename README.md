@@ -9,6 +9,10 @@ A web program that takes an input of various ingredients and outputs an image of
 Type ingredients user possesses into the input boxes in the left collumn of the page.  When the "Pour it" button is pushed, a drink will be selected from a database and provide an image and recipie for that drink.  Click on one of the buttons in the history section to display a previously shown drink.
 
 ## Screenshots
+![image](https://github.com/Michaelepigott/Group-Project-8-25/assets/139276635/4965addf-b453-4e32-98ca-f9cb83ac3fd2)
+
+##Link
+https://michaelepigott.github.io/Group-Project-8-25/
 
 ## Roadmap
 A third Column may be added and used to display ingredients in the shown that were not inputted by user in the future.

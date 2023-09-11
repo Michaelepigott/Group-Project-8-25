@@ -4,10 +4,10 @@
 
 #drinkoligist-title:hover {
     transition: opacity 0.6s ease-in-out;
+    cursor: pointer;
 }
 
-
-#hist-1{
+#hist-1 {
     color: white;
     font-weight: 400;
 }
@@ -36,15 +36,6 @@
     font-weight: 500;
 }
 
-#image{
-    display: flex;
-    justify-content: center;
-}
-
-
-
-
-
 
 @media (min-width: 1024px) {
     .lg\:flex {
@@ -66,6 +57,7 @@
 
 @media (max-width: 640px) {
     .lg\:flex {
-        display: block; /* Switch to rows layout */
+        display: block;
+        /* Switch to rows layout */
     }
 }

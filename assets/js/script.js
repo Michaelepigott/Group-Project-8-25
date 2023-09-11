@@ -13,27 +13,28 @@ var searchHistory = [];
 //Array to import ingredients
 var owned = [];
 //gets inputs
-function getinput(){
+function getinput() {
    owned.push(input1el.value);
    owned.push(input2el.value);
    owned.push(input3el.value);
    owned.push(input4el.value);
    //removes blank inputs from search
    input = owned.filter(checkblank);
-   function checkblank(owned){
+   function checkblank(owned) {
       return owned != '';
    };
    //joins array into one string
    var search = input.join(',');
    return search
-   
+
 }
+
 // function to display drink saved in local storage in history
 function renderSearchHistory() {
    historyEl.innerHTML = '';
    // for loop to show latest search input on top
    for (var i = searchHistory.length - 1; i >= 0; i--) {
-       // creating button for each search item
+      // creating button for each search item
       var Btn = document.createElement('button');
       // Btn needs to be styled with setting attributes
       Btn.classList.add('history-btn', 'btn-history');
@@ -42,71 +43,69 @@ function renderSearchHistory() {
       Btn.textContent = searchHistory[i].strDrink;
       historyEl.append(Btn);
    }
-} 
-
+}
 
 // function to store the resulted drink object in an array
 function setStorage(drink) {
    if (searchHistory.indexOf(drink) !== -1) {
-       return;
+      return;
    }
    searchHistory.push(drink);
    localStorage.setItem('search-history', JSON.stringify(searchHistory));
    renderSearchHistory();
-   }
+}
 
 // function to get search history from local storage
 function getStorage() {
-var storageHistory = localStorage.getItem('search-history');
-if (storageHistory) {
-   searchHistory = JSON.parse(storageHistory);
-}
-renderSearchHistory();
+   var storageHistory = localStorage.getItem('search-history');
+   if (storageHistory) {
+      searchHistory = JSON.parse(storageHistory);
+   }
+   renderSearchHistory();
 }
 
 // Function to clear local storage data and refresh the page
 function clearLocalStorageAndRefresh() {
-   localStorage.removeItem('search-history'); 
+   localStorage.removeItem('search-history');
 
    location.reload();
 }
 
 // Add a click event listener to the "Clear History" button
 var clearStorageButton = document.getElementById('clear-storage-btn');
-clearStorageButton.addEventListener('click', function() {
-       clearLocalStorageAndRefresh();
-   }
+clearStorageButton.addEventListener('click', function () {
+   clearLocalStorageAndRefresh();
+}
 );
 
 // Get the h1 element by its ID
 var titleElement = document.getElementById("drinkoligist-title");
 
 // Function to dim the h1 on hover
-titleElement.addEventListener("mouseenter", function() {
-    titleElement.style.opacity = "0.7";
+titleElement.addEventListener("mouseenter", function () {
+   titleElement.style.opacity = "0.7";
 });
 
 // Function to restore the h1 opacity when mouse leaves
-titleElement.addEventListener("mouseleave", function() {
-    titleElement.style.opacity = "1";
+titleElement.addEventListener("mouseleave", function () {
+   titleElement.style.opacity = "1";
 });
 
 // Function to refresh the page when the h1 is clicked
-titleElement.addEventListener("click", function() {
-    location.reload();
+titleElement.addEventListener("click", function () {
+   location.reload();
 });
 
-
 //use ingredients to import api data as array
-function getnamedata(){
+function getnamedata() {
    search = getinput();
    $.ajax({
       url: 'https://api.api-ninjas.com/v1/cocktail?ingredients=' + search,
-      headers: {'X-APi-Key':'YPxVXKTw1N29WEkYJ7PSqw==3auVDgBW2b9DwHeP'},
+      headers: { 'X-APi-Key': 'YPxVXKTw1N29WEkYJ7PSqw==3auVDgBW2b9DwHeP' },
       contentType: 'application/json',
       //code won't run until after the import is complete
       async: false,
-   success: function(result) {
+      success: function (result) {
          //saves data to variable
          namearray = result;
          // run get name function with the resulted array
@@ -115,14 +114,14 @@ function getnamedata(){
          return namearray;
       },
       error: function ajaxError(jqXHR) {
-   console.error('Error: ', jqXHR.responseText); 
+         console.error('Error: ', jqXHR.responseText);
       }
-      
-    });
+
+   });
 }
 
 //randomizes output from array
- function getname(namearray){
+function getname(namearray) {
    //If APi 1 comes up with nothing, error message, else run function
    if (namearray.length === 0) {
       cocktailName.innerHTML = 'Whoops, Try Again';
@@ -130,111 +129,107 @@ function getnamedata(){
       <img src= ./assets/glass-martini-spilled-liquid-pink-green-background-modern-art-photography-135682922.webp>
       `;
    } else {
-      randomnum = Math.floor(Math.random()*(10));
+      randomnum = Math.floor(Math.random() * (10));
       console.log(randomnum);
-      drinknameinfunction = namearray[randomnum].name;  
+      drinknameinfunction = namearray[randomnum].name;
       // run api2 function with drinknameinfunction variable;
-      api2(drinknameinfunction) };
- };
+      api2(drinknameinfunction)
+   };
+};
 
- function api2(drinknameinfunction){
-   
+function api2(drinknameinfunction) {
+   // sets request url to search by drinkname
+   var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
-    // sets request url to search by drinkname
- var urlRequest = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
-   
-   var drinkname = drinknameinfunction.replace(" ","_");
+   var drinkname = drinknameinfunction.replace(" ", "_");
    console.log(drinkname);
-   fetch (urlRequest + drinkname)
+   fetch(urlRequest + drinkname)
       .then(function (response) {
          return response.json();
       })
-      .then(function (data)  {
-      if(!data.drinks) {
-         // if result from getname doesn't match a data in api2 run function again to search for another match
-         getname(namearray)
-         // localStorage.setItem('suggestedDrink', JSON.stringify(data));
-      return;
-      }
-      // Clears Last Array
-      ingredientsList.innerHTML = '';
-      ingredientsList.innerHTML = '';
-   // return data.drinks
-      console.log(data);
-      console.log(data.drinks[0]);
-      var myDrink = data.drinks[0];
-      setStorage(myDrink)
-   // returns cocktail's name
-      cocktailName.innerHTML = myDrink.strDrink;
-      console.log(myDrink.strDrink);
-   // returns cocktail's image
-      image.innerHTML = `
+      .then(function (data) {
+         if (!data.drinks) {
+            // if result from getname doesn't match a data in api2 run function again to search for another match
+            getname(namearray)
+            // localStorage.setItem('suggestedDrink', JSON.stringify(data));
+            return;
+         }
+
+         // Clears Last Array
+         ingredientsList.innerHTML = '';
+         ingredientsList.innerHTML = '';
+         // return data.drinks
+         console.log(data);
+         console.log(data.drinks[0]);
+         var myDrink = data.drinks[0];
+         setStorage(myDrink)
+         // returns cocktail's name
+         cocktailName.innerHTML = myDrink.strDrink;
+         console.log(myDrink.strDrink);
+         // returns cocktail's image
+         image.innerHTML = `
       <img src=${myDrink.strDrinkThumb}>
       `;
-      console.log(myDrink.strDrinkThumb);
-   // returns coctail's instructions
-      cocktailInstructions.innerHTML = myDrink.strInstructions;
-      console.log(myDrink.strInstructions);
-      var count = 16;
-   // creates string for ingredients and corresponding measurements to be displayed on screen
-      var ingredients = [];
-      console.log(myDrink)
-   // for loop to tie correct measurement values to correct ingredient=======
-      console.log(data);
-      console.log(data.drinks[0]);
-      var myDrink = data.drinks[0];
-      console.log(myDrink.strDrink);
-      console.log(myDrink.strDrinkThumb);
-      console.log(myDrink.strInstructions);
-      var count = 16;
-      var ingredients = [];
- 
-      console.log(myDrink)
-      
+         console.log(myDrink.strDrinkThumb);
+         // returns coctail's instructions
+         cocktailInstructions.innerHTML = myDrink.strInstructions;
+         console.log(myDrink.strInstructions);
+         var count = 16;
+         // creates string for ingredients and corresponding measurements to be displayed on screen
+         var ingredients = [];
+         console.log(myDrink)
+         // for loop to tie correct measurement values to correct ingredient=======
+         console.log(data);
+         console.log(data.drinks[0]);
+         var myDrink = data.drinks[0];
+         console.log(myDrink.strDrink);
+         console.log(myDrink.strDrinkThumb);
+         console.log(myDrink.strInstructions);
+         var count = 16;
+         var ingredients = [];
+
+         console.log(myDrink)
+
          for (var i = 1; i <= count; i++) {
             var measure = myDrink['strMeasure' + i];
             var ingredient = myDrink['strIngredient' + i];
-    
+
             if (measure || ingredient) {
-                ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
+               ingredients.push(`${measure || ""} ${ingredient || ""}`.trim());
             }
-            
-        }
-      
-    
-        // Create an <ul> element to hold the list of ingredients
-        var ul = document.createElement("ul");
-    
-        // Populate the <ul> with <li> elements for each ingredient
-        ingredients.forEach(function (ingredient) {
+
+         }
+
+         // Create an <ul> element to hold the list of ingredients
+         var ul = document.createElement("ul");
+
+         // Populate the <ul> with <li> elements for each ingredient
+         ingredients.forEach(function (ingredient) {
             var listItem = document.createElement("li");
             listItem.textContent = ingredient;
             ul.appendChild(listItem);
-        });
-    
-        // Append the <ul> to the ingredientsList element
-        ingredientsList.appendChild(ul);
-   })
-   };
+         });
 
-   
+         // Append the <ul> to the ingredientsList element
+         ingredientsList.appendChild(ul);
+      })
+};
 
 getStorage();
-function searchHistoryClick (e) {
+function searchHistoryClick(e) {
    if (!e.target.matches('.btn-history')) {
-       return;
+      return;
    }
    var drinknameinfunction = e.target.textContent;
    api2(drinknameinfunction);
-   
+
 }
 
-
- //calls all functions on button press
- inputbtnel.addEventListener('click', function(event){
+//calls all functions on button press
+inputbtnel.addEventListener('click', function (event) {
    event.preventDefault();
    //call function (assign to user interface later)
    getnamedata();
-   
-   })
-  historyEl.addEventListener('click', searchHistoryClick);
+
+})
+historyEl.addEventListener('click', searchHistoryClick);

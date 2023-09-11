@@ -7,7 +7,6 @@
     cursor: pointer;
 }
 
-
 #hist-1 {
     color: white;
     font-weight: 400;
@@ -20,7 +19,6 @@
     padding: 20px 0;
     text-align: center;
 }
-
 
 #drink-mi {
     padding-bottom: 10px;
@@ -36,15 +34,6 @@
     color: white;
     font-weight: 500;
 }
-
-#image {
-    display: flex;
-    justify-content: center;
-}
-
-
-
-
 
 
 @media (min-width: 1024px) {
